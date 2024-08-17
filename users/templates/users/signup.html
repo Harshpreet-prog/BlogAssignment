@@ -1,10 +1,15 @@
-{% extends "users/layout.html" %}
+{% extends "blog/base.html" %}
+
+{% block title %}Sign Up{% endblock %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">signup</button>
-</form>
-
-{% endblock content %}
+<div class="signup-container">
+    <h2 class="signup-header">Create Your Account</h2>
+    <form method="post" class="signup-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="signup-button">Sign Up</button>
+    </form>
+    <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock %}

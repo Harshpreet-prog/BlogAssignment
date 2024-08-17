@@ -6,7 +6,7 @@ from users.views import signup, login,logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls')),
+    path('', include('blog.urls')),
     path('login/', login,name = 'login'),
     path('signup/',  signup,name = 'signup'),
     path('logout/',  logout,name = 'logout'),

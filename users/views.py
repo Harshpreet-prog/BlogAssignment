@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.shortcuts import redirect
 
 from .forms import SignUpForm
@@ -15,7 +14,7 @@ def login(request):
             user = form.get_user()
             auth_login(request, user)
             messages.success(request, f'Welcome, {user.username}!')
-            return redirect('home')  # Replace 'home' with the name of your homepage URL pattern
+            return redirect('blog_list') 
         else:
             messages.error(request, 'Invalid username or password.')
     else:
@@ -32,7 +31,7 @@ def signup(request):
             user.set_password(form.cleaned_data['password'])
             user.save()
             messages.success(request, 'Account created successfully!')
-            return redirect('login')  # Replace 'login' with the name of your login URL pattern
+            return redirect('login')  
     else:
         form = SignUpForm()
     
@@ -40,10 +39,7 @@ def signup(request):
 
 
 
-
-
-
 def logout(request):
     auth_logout(request)
     messages.success(request, 'You have been logged out.')
-    return redirect('login')  # Replace 'login' with the name of your login URL pattern
+    return redirect('login')
